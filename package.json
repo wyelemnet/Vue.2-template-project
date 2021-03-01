@@ -4,7 +4,17 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "husky-prepare": "husky install",
+    "husky-pre-commit": "npx husky add .husky/pre-commit 'yarn lint-staged'",
+    "lint-staged": "lint-staged",
+    "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx --ext .vue src/ --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue,jsx,ts,tsx,json,css,scss,md}": [
+      "yarn lint",
+      "git add"
+    ]
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -17,8 +27,16 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.6.0",
+    "husky": "^5.0.9",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "lint-staged": "^10.5.4",
     "vue-template-compiler": "^2.6.11"
   }
 }
